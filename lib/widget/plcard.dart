@@ -1,9 +1,17 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:quizapp/screen/getjson.dart';
+import 'package:quizapp/screen/quizpage.dart';
 
 Widget plcard(String lang, String img) {
   return Padding(
     padding: const EdgeInsets.all(20.0),
     child: InkWell(
+      onTap: () {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => GetJson()));
+      },
       child: Material(
         borderRadius: BorderRadius.circular(20),
         elevation: 10,
