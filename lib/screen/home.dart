@@ -22,11 +22,11 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(
         children: [
-          plcard("c", img[0]),
-          plcard("Java", img[1]),
-          plcard("Javascript", img[2]),
-          plcard("C#", img[3]),
-          plcard("Python", img[4]),
+          plcard("c", img[0], context),
+          plcard("Java", img[1], context),
+          plcard("Javascript", img[2], context),
+          plcard("C#", img[3], context),
+          plcard("Python", img[4], context),
         ],
       ),
     );

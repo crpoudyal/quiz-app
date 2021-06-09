@@ -1,10 +1,7 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:quizapp/screen/getjson.dart';
-import 'package:quizapp/screen/quizpage.dart';
 
-Widget plcard(String lang, String img) {
+Widget plcard(String lang, String img, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(20.0),
     child: InkWell(
