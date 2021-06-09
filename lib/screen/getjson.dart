@@ -7,7 +7,7 @@ class GetJson extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: DefaultAssetBundle.of(context).loadString("assets/data.json"),
+      future: DefaultAssetBundle.of(context).loadString("assets/json/cpp.json"),
       builder: (context, snapshot) {
         var data = json.decode(snapshot.data.toString());
         if (data == null) {
