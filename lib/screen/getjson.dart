@@ -17,7 +17,7 @@ class GetJson extends StatelessWidget {
             ),
           );
         } else {
-          return QuizPage();
+          return QuizPage(data: data);
         }
       },
     );

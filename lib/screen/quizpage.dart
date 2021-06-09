@@ -1,12 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/widget/ansbtn.dart';
 
 class QuizPage extends StatefulWidget {
+  var data;
+
+  QuizPage({Key? key, @required this.data}) : super(key: key);
   @override
-  _QuizPageState createState() => _QuizPageState();
+  _QuizPageState createState() => _QuizPageState(data);
 }
 
 class _QuizPageState extends State<QuizPage> {
+  var data;
+  _QuizPageState(this.data);
+
+  Widget ansbtn(String d) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: ElevatedButton(
+        onPressed: () => {},
+        child: Text(
+          data[1]["1"][d],
+          style: TextStyle(fontSize: 18),
+          maxLines: 1,
+        ),
+        style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(horizontal: 72, vertical: 20),
+            primary: Colors.blue,
+            onPrimary: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            )),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +44,7 @@ class _QuizPageState extends State<QuizPage> {
               padding: EdgeInsets.all(15),
               alignment: Alignment.center,
               child: Text(
-                "what is your name?",
+                data[0]["1"],
                 style: TextStyle(
                   fontSize: 20,
                 ),
@@ -31,10 +57,10 @@ class _QuizPageState extends State<QuizPage> {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ansbtn(),
-                ansbtn(),
-                ansbtn(),
-                ansbtn(),
+                ansbtn('a'),
+                ansbtn('b'),
+                ansbtn('c'),
+                ansbtn('d'),
               ],
             )),
           ),
