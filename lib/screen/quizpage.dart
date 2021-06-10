@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class QuizPage extends StatefulWidget {
@@ -11,6 +13,7 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   var data;
   _QuizPageState(this.data);
+  int i = 1;
 
   Map<String, Color> btnclr = {
     "a": Colors.blue,
@@ -18,6 +21,7 @@ class _QuizPageState extends State<QuizPage> {
     "c": Colors.blue,
     "d": Colors.blue,
   };
+
   int marks = 0;
   Color clrtoshow = Colors.blue;
   Color correct = Colors.green;
@@ -33,6 +37,19 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       btnclr[k] = clrtoshow;
     });
+    Timer(Duration(seconds: 1), nxtque);
+  }
+
+  void nxtque() {
+    setState(() {
+      if (i < 5) {
+        i++;
+      } else {}
+      btnclr["a"] = Colors.blue;
+      btnclr["b"] = Colors.blue;
+      btnclr["c"] = Colors.blue;
+      btnclr["d"] = Colors.blue;
+    });
   }
 
   Widget ansbtn(String d) {
@@ -41,7 +58,7 @@ class _QuizPageState extends State<QuizPage> {
       child: ElevatedButton(
         onPressed: () => checkans(d),
         child: Text(
-          data[1]["1"][d],
+          data[1][i.toString()][d],
           style: TextStyle(fontSize: 18),
           maxLines: 1,
         ),
@@ -67,7 +84,7 @@ class _QuizPageState extends State<QuizPage> {
               padding: EdgeInsets.all(15),
               alignment: Alignment.center,
               child: Text(
-                data[0]["1"],
+                data[0][i.toString()],
                 style: TextStyle(
                   fontSize: 20,
                 ),
