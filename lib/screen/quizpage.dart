@@ -12,11 +12,34 @@ class _QuizPageState extends State<QuizPage> {
   var data;
   _QuizPageState(this.data);
 
+  Map<String, Color> btnclr = {
+    "a": Colors.blue,
+    "b": Colors.blue,
+    "c": Colors.blue,
+    "d": Colors.blue,
+  };
+  int marks = 0;
+  Color clrtoshow = Colors.blue;
+  Color correct = Colors.green;
+  Color wrong = Colors.red;
+
+  void checkans(String k) {
+    if (data[2]["1"] == data[1]["1"][k]) {
+      marks = marks + 10;
+      clrtoshow = correct;
+    } else {
+      clrtoshow = wrong;
+    }
+    setState(() {
+      btnclr[k] = clrtoshow;
+    });
+  }
+
   Widget ansbtn(String d) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: ElevatedButton(
-        onPressed: () => {},
+        onPressed: () => checkans(d),
         child: Text(
           data[1]["1"][d],
           style: TextStyle(fontSize: 18),
@@ -24,7 +47,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
         style: ElevatedButton.styleFrom(
             padding: EdgeInsets.symmetric(horizontal: 72, vertical: 20),
-            primary: Colors.blue,
+            primary: btnclr[d],
             onPrimary: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
