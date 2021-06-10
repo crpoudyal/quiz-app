@@ -14,6 +14,8 @@ class _QuizPageState extends State<QuizPage> {
   var data;
   _QuizPageState(this.data);
   int i = 1;
+  int timer = 30;
+  String stimer = "30";
 
   Map<String, Color> btnclr = {
     "a": Colors.blue,
@@ -21,7 +23,30 @@ class _QuizPageState extends State<QuizPage> {
     "c": Colors.blue,
     "d": Colors.blue,
   };
+  @override
+  void initState() {
+    starttimer();
+    super.initState();
+  }
 
+  void starttimer() async {
+    const onesec = Duration(seconds: 1);
+    Timer.periodic(onesec, (Timer t) {
+      setState(() {
+        if (timer < 1) {
+          t.cancel();
+          nxtque();
+        } else if (cancletimer == true) {
+          t.cancel();
+        } else {
+          timer = timer - 1;
+        }
+        stimer = timer.toString();
+      });
+    });
+  }
+
+  bool cancletimer = false;
   int marks = 0;
   Color clrtoshow = Colors.blue;
   Color correct = Colors.green;
@@ -41,15 +66,18 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void nxtque() {
+    cancletimer = false;
+    timer = 30;
     setState(() {
       if (i < 5) {
         i++;
-      } else {}
+      }
       btnclr["a"] = Colors.blue;
       btnclr["b"] = Colors.blue;
       btnclr["c"] = Colors.blue;
       btnclr["d"] = Colors.blue;
     });
+    starttimer();
   }
 
   Widget ansbtn(String d) {
@@ -109,8 +137,11 @@ class _QuizPageState extends State<QuizPage> {
             child: Container(
               alignment: Alignment.topCenter,
               child: Text(
-                "30",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.w700),
+                stimer,
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
           ),
