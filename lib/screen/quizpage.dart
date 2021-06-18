@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:quizapp/screen/result.dart';
 
 class QuizPage extends StatefulWidget {
   var data;
@@ -71,6 +72,10 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       if (i < 5) {
         i++;
+      } else {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => Result(marks: marks),
+        ));
       }
       btnclr["a"] = Colors.blue;
       btnclr["b"] = Colors.blue;
