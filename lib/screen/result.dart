@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/screen/home.dart';
 
 class Result extends StatefulWidget {
   int marks;
@@ -50,7 +51,13 @@ class _ResultState extends State<Result> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => Home(),
+                        ),
+                      );
+                    },
                     child: Text("continue"),
                   )
                 ],
